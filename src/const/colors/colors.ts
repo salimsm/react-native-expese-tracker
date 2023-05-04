@@ -1,5 +1,5 @@
 export const AppColors = {
-  gradien: {
+  gradient: {
     start: '#56CCF2',
     // mid: 'green',
     end: '#2F80ED',
@@ -13,6 +13,6 @@ export const AppColors = {
     purple: '#8340E5',
     red: '#E53B3B',
     orange: '#FFB621',
-    green:'#09B69B',
+    green:'green',
   },
 };
