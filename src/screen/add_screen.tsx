@@ -1,25 +1,23 @@
 import {
-  FlatList,
   ScrollView,
-  StyleProp,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
-  ViewStyle,
 } from 'react-native';
 import React, {useState} from 'react';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import CustomButton from '../common/Button/custom_button';
-import CustomText from '../common/Text/custom_text';
-import {CategoryList} from '../const/string/string';
-import {AppColors} from '../const/colors/colors';
 import CategorySelector from '../custom_widget/category_selector';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import CustomCalender from '../custom_widget/custom_calender';
+import BackButton from '../custom_widget/back_button';
+import { goBack } from '../utils/navigation';
 
-const AddScreen = () => {
+const AddScreen = ({navigation}:any) => {
   return (
     <View style={styles.container}>
+      <BackButton onPress={()=>goBack(navigation)}/>
       <ScrollView>
         <View style={styles.topHalf}>
           <Text style={{textAlign: 'center', fontSize: 20, fontWeight: 'bold'}}>
@@ -47,7 +45,15 @@ const AddScreen = () => {
           />
 
           <CategorySelector getCategoryValue={value => console.log(value)} />
-          <CustomButton icon="calendar-today" text="Date" />
+
+          {/* <CustomButton icon="calendar-today" text="Date" />
+          <Calendar onDayPress={value => {}} /> */}
+
+          <CustomCalender
+            getDate={v => {
+              console.log(v);
+            }}
+          />
         </View>
       </ScrollView>
 
