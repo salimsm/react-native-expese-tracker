@@ -10,4 +10,9 @@ packages:
 2) React Native Liner Gradient:
     "react-native-linear-gradient": "^2.6.2",
 
-3) 
+
+branch : 
+1) master
+2) folder-structure
+3) add-page
+4) feature/splash
