@@ -1,4 +1,11 @@
-import {ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  ToastAndroid,
+  View,
+} from 'react-native';
 import React, {useState} from 'react';
 import CustomButton from '../common/Button/custom_button';
 import CategorySelector from '../custom_widget/category_selector';
@@ -7,6 +14,7 @@ import BackButton from '../custom_widget/back_button';
 import {goBack} from '../utils/navigation';
 import RowContainer from '../custom_widget/row_container';
 import CustomInputText from '../common/Input Text/text_input';
+import firestore from '@react-native-firebase/firestore';
 
 const AddScreen = ({navigation}: any) => {
   const [amount, setAmount] = useState(0);
@@ -17,6 +25,20 @@ const AddScreen = ({navigation}: any) => {
   console.log('AddScreen');
 
   const handleSave = () => {
+    Date.now();
+    firestore()
+      .collection('01userId')
+      .add({
+        note: note,
+        amount: amount,
+        catagory: catagory,
+        date: date,
+      })
+      .then(() =>{
+        setAmount(0);
+        setNote('');
+        
+      });
     console.log({catagory: catagory, date: date, amount: amount, note: note});
   };
   return (
@@ -33,12 +55,14 @@ const AddScreen = ({navigation}: any) => {
             placeholder="$0.0"
             style={styles.amtTextInput}
             keyboardType="number-pad"
+            value={amount.toString()}
             onChangeText={v => setAmount(parseInt(v))}
           />
           <CustomInputText
             placeholder="Note"
             style={styles.noteTextInput}
             onChangeText={v => setNote(v)}
+            value={note}
           />
 
           <CategorySelector getCategoryValue={value => setCatagory(value)} />

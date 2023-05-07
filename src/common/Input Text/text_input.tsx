@@ -4,16 +4,18 @@ interface IInputText {
   placeholder?: string;
   onChangeText:(value:string)=>void;
   secureText?:boolean;
+  value?:string;
   
   style?: StyleProp<TextStyle>;
 }
 
-const CustomInputText = ({placeholder,onChangeText ,style,secureText=false}: IInputText) => {
+const CustomInputText = ({placeholder,onChangeText ,style,secureText=false,value:value}: IInputText) => {
   return <TextInput
   placeholder={placeholder}
   onChangeText={onChangeText}
   secureTextEntry={secureText}
   style={styles.textInput}
+  value={value}
 />;
 };
 
