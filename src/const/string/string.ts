@@ -9,6 +9,11 @@ export const AppString = {
   total_balance: 'Total Balance',
   income: 'Income',
   expense: 'Expenses',
+
+  toast_msg:{
+    register_sucessfully:"Registered Sucessfully.",
+    login_sucessfully:"Login Sucessfully.",
+  }
 };
 
 export const CategoryList = ['Shopping','Food','Travel','Entertainment'];
