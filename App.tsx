@@ -8,6 +8,7 @@ import AddScreen from './src/screen/add_screen';
 import SplashScreen from 'react-native-splash-screen';
 import LoginScreen from './src/screen/login_screen';
 import RegisterScreen from './src/screen/register_screen';
+import TranscationScreen from './src/screen/transcation_screen';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
         <Stack.Screen name="AddScreen" component={AddScreen} />
+        <Stack.Screen name="TranscationScreen" component={TranscationScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

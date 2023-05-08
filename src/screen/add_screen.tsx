@@ -1,20 +1,12 @@
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  ToastAndroid,
-  View,
-} from 'react-native';
+import {ScrollView, StyleSheet, TextInput, View} from 'react-native';
 import React, {useState} from 'react';
 import CustomButton from '../common/Button/custom_button';
 import CategorySelector from '../custom_widget/category_selector';
 import CustomCalender from '../custom_widget/custom_calender';
-import BackButton from '../custom_widget/back_button';
 import {goBack} from '../utils/navigation';
-import RowContainer from '../custom_widget/row_container';
 import CustomInputText from '../common/Input Text/text_input';
 import firestore from '@react-native-firebase/firestore';
+import AppBar from '../custom_widget/appbar';
 
 const AddScreen = ({navigation}: any) => {
   const [amount, setAmount] = useState(0);
@@ -25,7 +17,6 @@ const AddScreen = ({navigation}: any) => {
   console.log('AddScreen');
 
   const handleSave = () => {
-    Date.now();
     firestore()
       .collection('01userId')
       .add({
@@ -34,20 +25,15 @@ const AddScreen = ({navigation}: any) => {
         catagory: catagory,
         date: date,
       })
-      .then(() =>{
+      .then(() => {
         setAmount(0);
         setNote('');
-        
       });
     console.log({catagory: catagory, date: date, amount: amount, note: note});
   };
   return (
     <View style={styles.container}>
-      <RowContainer style={styles.appbar}>
-        <BackButton onPress={() => goBack(navigation)} />
-        <Text style={styles.title}>Add Expense</Text>
-        <Text></Text>
-      </RowContainer>
+      <AppBar title="Add Expense" onBackPressed={() => goBack(navigation)} />
 
       <ScrollView>
         <View style={styles.topHalf}>

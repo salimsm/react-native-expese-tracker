@@ -15,6 +15,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {AppString} from '../const/string/string';
 import {goToNextPage} from '../utils/navigation';
 import {AppRoute} from '../const/routes/route';
+import TranscationScreen from './transcation_screen';
 
 const MainScreen = ({navigation}: any) => {
   return (
@@ -28,7 +29,9 @@ const MainScreen = ({navigation}: any) => {
             <Text style={{fontSize: 17, fontWeight: 'bold', color: 'black'}}>
               Transcation
             </Text>
-            <Text style={{fontSize: 17, color: 'black'}}>View All</Text>
+            <TouchableOpacity onPress={()=>goToNextPage(navigation,'TranscationScreen')}>
+              <Text style={{fontSize: 17, color: 'black'}}>View All</Text>
+            </TouchableOpacity>
           </RowContainer>
 
           <Card
