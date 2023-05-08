@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import CustomButton from '../common/Button/custom_button';
 import CustomText from '../common/Text/custom_text';
 import {AppColors} from '../const/colors/colors';
@@ -29,8 +29,9 @@ const CategorySelector = ({getCategoryValue}: ICategorySelector) => {
       />
       {show && (
         <View style={styles.categoryOptionContainer}>
-          {CategoryList.map((item: string) => (
+          {CategoryList.map((item: string,index:number) => (
             <TouchableOpacity
+            key={index}
               style={{
                 backgroundColor: 'white',
                 paddingHorizontal: 14,
