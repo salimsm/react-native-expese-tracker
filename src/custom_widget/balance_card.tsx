@@ -35,6 +35,8 @@ const BalanceCard = () => {
           subTitle={data.totalExpense}
           titleStyle={styles.textColor}
           subTitleStyle={styles.textColor}
+          style={{alignItems: 'flex-end'}}
+
         />
       </RowContainer>
     </LinearGradient>
