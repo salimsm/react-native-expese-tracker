@@ -6,9 +6,11 @@ interface ITransaction {
   totalExpense: number;
   totalBalance: number;
   income: number;
-  filterDataByMonth:{}[];
+  filterDataByMonth: {}[];
   filteredTodayData: [];
   groupByCatagory: {}[];
+  // monthlyDataLoading:boolean;
+  mothlyData:{}[];
 }
 
 const initialState: ITransaction = {
@@ -16,9 +18,11 @@ const initialState: ITransaction = {
   totalExpense: 0,
   totalBalance: 0,
   income: 20000,
-  filterDataByMonth:[],
+  filterDataByMonth: [],
   filteredTodayData: [],
   groupByCatagory: [],
+  // monthlyDataLoading:true,
+  mothlyData:[],
 };
 
 export const transcationSlice = createSlice({
@@ -59,18 +63,28 @@ export const transcationSlice = createSlice({
         };
       });
     },
-    // catagoryTransaction(state) {
-    //   const filteredTodayData = state.transactionList.filter(
-    //     value => value.category === date,
-    //   );
+    catagoryByMonth(state) {
+      const monthList = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
 
-    //   state.groupByCatagory = CategoryList.map(category => {
-    //     return {
-    //       category: category,
-    //       data: filteredTodayData.filter(data => category === data.category),
-    //     };
-    //   });
-    // },
+      state.mothlyData = monthList.map(month => {
+        return {
+          month: month,
+          total: state.transactionList.reduce((acc, value) => {
+            console.log(value.amount);
+            if (value.date.slice(5, 7) === month) {
+              return acc + value.amount;
+            }
+            return acc;
+          }, 0)
+        };
+      });
+      // state.monthlyDataLoading = true;
+  
+      console.log('monthly data from slice');
+      
+      console.log(state.mothlyData);
+      
+    },
     // clearProduct(state) {
     //   state.cartItem = [];
     //   state.totalPrice = 0;
@@ -80,5 +94,5 @@ export const transcationSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const {addTranscation, todayTransaction} = transcationSlice.actions;
+export const {addTranscation, todayTransaction,catagoryByMonth} = transcationSlice.actions;
 export default transcationSlice.reducer;

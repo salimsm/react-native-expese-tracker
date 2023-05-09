@@ -13,6 +13,7 @@ import { Provider } from 'react-redux';
 import { store } from './src/redux/store/store';
 import SettingScreen from './src/screen/setting_screen';
 import CategoryScreen from './src/screen/category_screen';
+import ChartScreen from './src/screen/chart_screen';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
         <Stack.Screen name="TranscationScreen" component={TranscationScreen} />
         <Stack.Screen name="SettingScreen" component={SettingScreen} />
         <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
+        <Stack.Screen name="ChartScreen" component={ChartScreen} />
       
       </Stack.Navigator>
     </NavigationContainer>
