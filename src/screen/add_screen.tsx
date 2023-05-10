@@ -51,12 +51,11 @@ const AddScreen = ({navigation}: any) => {
       <ScrollView>
         <View style={styles.topHalf}>
           <TextInput
-            placeholder="$0.0"
+            // placeholder="$0.0"
             style={styles.amtTextInput}
             keyboardType="number-pad"
             value={amount.toString()}
             onChangeText={v => {
-              //setAmount(parseInt(v))
               let numValue = parseInt(v, 10);
               if (v == '') {
                 setAmount(0);
@@ -116,7 +115,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
   },
 });
-
 
 /*
 onChangeText={v => {

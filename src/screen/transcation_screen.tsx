@@ -15,6 +15,7 @@ import SecondaryCard from '../custom_widget/secondary_card';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CustomCalender from '../custom_widget/custom_calender';
 import CustomText from '../common/Text/custom_text';
+import MessageCard from '../custom_widget/message_card';
 
 interface IData {
   amount: number;
@@ -87,13 +88,14 @@ const TranscationList = () => {
     <View style={{flex: 1}}>
       <CustomText text={'Filter By Date:'} />
       <CustomCalender
+        showToday={false}
         getSelectedDate={(date: string): void => {
           filterList(date);
         }}
       />
-
       {uiList.length <= 0 ? (
-        <Text>Nothing to show</Text>
+        // <Text>Nothing to show</Text>
+        <MessageCard msg="Nothing to show" />
       ) : (
         <FlatList
           data={uiList}

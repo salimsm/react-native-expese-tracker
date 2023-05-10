@@ -8,11 +8,14 @@ import { getDate } from '../utils/date';
 
 interface ICustomCalender {
   getSelectedDate: (category: string) => void;
+  showToday?:boolean;
 }
 
-const CustomCalender = ({getSelectedDate}: ICustomCalender) => {
+const CustomCalender = ({getSelectedDate,showToday=true}: ICustomCalender) => {
+  const maxDateValue = getDate();
+
   const [show, setShow] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(`${getDate()}`);
+  const [selectedValue, setSelectedValue] = useState(showToday?`${getDate()}`:'');
   return (
     <View>
       <CustomButton
@@ -29,6 +32,12 @@ const CustomCalender = ({getSelectedDate}: ICustomCalender) => {
             setSelectedValue(value.dateString);
             setShow(!show);
             getSelectedDate(value.dateString);
+          }}
+          markedDates={{
+            '2023-05-01':{},
+            '2023-05-02': {marked: true},
+            '2023-05-03': {selected: true, marked: true, selectedColor: 'blue'},
+            //[selected]: {selected: true, disableTouchEvent: true, selectedDotColor: 'orange'}
           }}
         />
       )}
