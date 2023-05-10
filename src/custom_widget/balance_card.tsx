@@ -6,6 +6,7 @@ import {AppColors} from '../const/colors/colors';
 import RowContainer from './row_container';
 import CustomText from '../common/Text/custom_text';
 import { useSelector } from 'react-redux';
+import { getDate } from '../utils/date';
 
 const BalanceCard = () => {
   const data = useSelector((state:any)=>state.transaction);
@@ -15,6 +16,8 @@ const BalanceCard = () => {
       start={{x: 0, y: 0}}
       end={{x: 1, y: 1}}
       style={styles.linearGradient}>
+      <CustomText text={getDate().slice(0,7)} color={AppColors.white} />
+      
       <CustomText text="Total Balance" color={AppColors.white} />
       
       <CustomText

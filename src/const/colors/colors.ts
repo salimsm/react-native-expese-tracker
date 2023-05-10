@@ -1,7 +1,6 @@
 export const AppColors = {
   gradient: {
     start: '#56CCF2',
-    // mid: 'green',
     end: '#2F80ED',
   },
   background: '#F3F4F6',

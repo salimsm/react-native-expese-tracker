@@ -22,7 +22,6 @@ const ChartScreen = ({navigation, route}: any) => {
   const [dataY, setDataY] = useState<number[]>([]);
 
   console.log();
-  console.log('char screen');
   console.log('----------------chart screen----------------------');
 
   const extractData =() => {
@@ -75,8 +74,8 @@ const ChartScreen = ({navigation, route}: any) => {
                 datasets: [
                   {
                     data: 
-                    // dataY,
-                     [2,3,4,5,6,7,8,9,2,5,2]
+                     dataY,
+                     //[2,3,4,5,6,7,8,9,2,5,2]
                   },
                 ],
               }}

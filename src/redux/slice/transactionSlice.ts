@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {CategoryList} from '../../const/string/string';
+import {CategoryList, monthList} from '../../const/string/string';
 
 interface ITransaction {
   transactionList: any[];
@@ -9,8 +9,7 @@ interface ITransaction {
   filterDataByMonth: {}[];
   filteredTodayData: [];
   groupByCatagory: {}[];
-  // monthlyDataLoading:boolean;
-  mothlyData:{}[];
+  mothlyData: {}[];
 }
 
 const initialState: ITransaction = {
@@ -21,8 +20,7 @@ const initialState: ITransaction = {
   filterDataByMonth: [],
   filteredTodayData: [],
   groupByCatagory: [],
-  // monthlyDataLoading:true,
-  mothlyData:[],
+  mothlyData: [],
 };
 
 export const transcationSlice = createSlice({
@@ -33,13 +31,15 @@ export const transcationSlice = createSlice({
       const data = action.payload;
 
       state.transactionList = data;
-      console.log();
-      console.log('**********start****************');
       console.log(
         '-------------------filtered data of this month from state--------------',
       );
+      // `${Date.now().}`
+      const d = new Date();
+      // console.log(`${d.getFullYear()}-${monthList[d.getMonth()]}`);
+
       const filteredData = state.transactionList.filter(
-        value => value.date.slice(0, 7) === '2023-05',
+        value => value.date.slice(0, 7) === `${d.getFullYear()}-${monthList[d.getMonth()]}`
       );
       state.filterDataByMonth = filteredData;
       state.totalExpense = filteredData.reduce(
@@ -47,8 +47,6 @@ export const transcationSlice = createSlice({
         0,
       );
       state.totalBalance = state.income - state.totalExpense;
-      console.log(state);
-      console.log('***********end***************');
     },
     todayTransaction(state) {
       const date = Date.now();
@@ -64,8 +62,6 @@ export const transcationSlice = createSlice({
       });
     },
     catagoryByMonth(state) {
-      const monthList = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
-
       state.mothlyData = monthList.map(month => {
         return {
           month: month,
@@ -75,24 +71,16 @@ export const transcationSlice = createSlice({
               return acc + value.amount;
             }
             return acc;
-          }, 0)
+          }, 0),
         };
       });
-      // state.monthlyDataLoading = true;
-  
       console.log('monthly data from slice');
-      
       console.log(state.mothlyData);
-      
     },
-    // clearProduct(state) {
-    //   state.cartItem = [];
-    //   state.totalPrice = 0;
-    //   state.totalItem = 0;
-    //    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const {addTranscation, todayTransaction,catagoryByMonth} = transcationSlice.actions;
+export const {addTranscation, todayTransaction, catagoryByMonth} =
+  transcationSlice.actions;
 export default transcationSlice.reducer;

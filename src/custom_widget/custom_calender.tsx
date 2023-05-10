@@ -4,13 +4,15 @@ import CustomButton from '../common/Button/custom_button';
 import CustomText from '../common/Text/custom_text';
 import {AppColors} from '../const/colors/colors';
 import {Calendar} from 'react-native-calendars';
+import { getDate } from '../utils/date';
+
 interface ICustomCalender {
-  getDate: (category: string) => void;
+  getSelectedDate: (category: string) => void;
 }
 
-const CustomCalender = ({getDate}: ICustomCalender) => {
+const CustomCalender = ({getSelectedDate}: ICustomCalender) => {
   const [show, setShow] = useState(false);
-  const [selectedValue, setSelectedValue] = useState('');
+  const [selectedValue, setSelectedValue] = useState(`${getDate()}`);
   return (
     <View>
       <CustomButton
@@ -26,7 +28,7 @@ const CustomCalender = ({getDate}: ICustomCalender) => {
           onDayPress={value => {
             setSelectedValue(value.dateString);
             setShow(!show);
-            getDate(value.dateString);
+            getSelectedDate(value.dateString);
           }}
         />
       )}
