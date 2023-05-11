@@ -13,7 +13,7 @@ interface ICard {
   amount?: number;
   onPress?:()=>void;
 }
-const Card = ({bColor, icon, title, date, amount,onPress}: ICard) => {
+const Card = ({bColor, icon, title, date, amount=0,onPress}: ICard) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <RowContainer>
@@ -27,7 +27,7 @@ const Card = ({bColor, icon, title, date, amount,onPress}: ICard) => {
 
         <ColumnText
           title="Today"
-          subTitle="20000"
+          subTitle={amount}
           style={{alignItems: 'flex-end'}}
         />
       </RowContainer>

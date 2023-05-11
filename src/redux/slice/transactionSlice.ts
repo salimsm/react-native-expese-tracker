@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {CategoryList, monthList} from '../../const/string/string';
+import {monthList} from '../../const/string/string';
 
 interface ITransaction {
   transactionList: any[];
@@ -7,7 +7,6 @@ interface ITransaction {
   totalBalance: number;
   income: number;
   filterDataByMonth: {}[];
-  filteredTodayData: [];
   groupByCatagory: {}[];
   mothlyData: {}[];
 }
@@ -18,7 +17,6 @@ const initialState: ITransaction = {
   totalBalance: 0,
   income: 20000,
   filterDataByMonth: [],
-  filteredTodayData: [],
   groupByCatagory: [],
   mothlyData: [],
 };
@@ -31,41 +29,31 @@ export const transcationSlice = createSlice({
       const data = action.payload.sort((a: any, b: any) => {
         return b.date.localeCompare(a.date);
       });
+      
+      // console.log(data);
 
       state.transactionList = data;
       console.log(
         '-------------------filtered data of this month from state--------------',
       );
+
       const d = new Date();
+      // filter data which return the list of transcation done in current month
       const filteredData = state.transactionList.filter(
         value =>
           value.date.slice(0, 7) ===
           `${d.getFullYear()}-${monthList[d.getMonth()]}`,
       );
+      //filterDataByMonth = transcation of this month only
       state.filterDataByMonth = filteredData;
+
+      // calculate total expense of current month
       state.totalExpense = filteredData.reduce(
         (acc, value) => acc + value.amount,
         0,
       );
       state.totalBalance = state.income - state.totalExpense;
     },
-    // todayTransaction(state) {
-    //   const date = Date.now();
-    //   const filteredTodayData = state.transactionList.filter(
-    //     value => value.date === date,
-    //   );
-    //   console.log('TodayTranscation');
-    //   console.log(filteredTodayData);
-
-    //   state.groupByCatagory = CategoryList.map(category => {
-    //     return {
-    //       category: category,
-    //       data: filteredTodayData.filter(data => category === data.category),
-    //     };
-    //   });
-    //   console.log(state.groupByCatagory);
-
-    // },
     catagoryByMonth(state) {
       state.mothlyData = monthList.map(month => {
         return {
@@ -86,6 +74,5 @@ export const transcationSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const {addTranscation, catagoryByMonth} =
-  transcationSlice.actions;
+export const {addTranscation, catagoryByMonth} = transcationSlice.actions;
 export default transcationSlice.reducer;
