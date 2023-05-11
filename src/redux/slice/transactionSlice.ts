@@ -28,18 +28,19 @@ export const transcationSlice = createSlice({
   initialState,
   reducers: {
     addTranscation(state, action: PayloadAction<any>) {
-      const data = action.payload;
+      const data = action.payload.sort((a: any, b: any) => {
+        return b.date.localeCompare(a.date);
+      });
 
       state.transactionList = data;
       console.log(
         '-------------------filtered data of this month from state--------------',
       );
-      // `${Date.now().}`
       const d = new Date();
-      // console.log(`${d.getFullYear()}-${monthList[d.getMonth()]}`);
-
       const filteredData = state.transactionList.filter(
-        value => value.date.slice(0, 7) === `${d.getFullYear()}-${monthList[d.getMonth()]}`
+        value =>
+          value.date.slice(0, 7) ===
+          `${d.getFullYear()}-${monthList[d.getMonth()]}`,
       );
       state.filterDataByMonth = filteredData;
       state.totalExpense = filteredData.reduce(
@@ -48,19 +49,23 @@ export const transcationSlice = createSlice({
       );
       state.totalBalance = state.income - state.totalExpense;
     },
-    todayTransaction(state) {
-      const date = Date.now();
-      const filteredTodayData = state.transactionList.filter(
-        value => value.date === date,
-      );
+    // todayTransaction(state) {
+    //   const date = Date.now();
+    //   const filteredTodayData = state.transactionList.filter(
+    //     value => value.date === date,
+    //   );
+    //   console.log('TodayTranscation');
+    //   console.log(filteredTodayData);
 
-      state.groupByCatagory = CategoryList.map(category => {
-        return {
-          category: category,
-          data: filteredTodayData.filter(data => category === data.category),
-        };
-      });
-    },
+    //   state.groupByCatagory = CategoryList.map(category => {
+    //     return {
+    //       category: category,
+    //       data: filteredTodayData.filter(data => category === data.category),
+    //     };
+    //   });
+    //   console.log(state.groupByCatagory);
+
+    // },
     catagoryByMonth(state) {
       state.mothlyData = monthList.map(month => {
         return {
@@ -81,6 +86,6 @@ export const transcationSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const {addTranscation, todayTransaction, catagoryByMonth} =
+export const {addTranscation, catagoryByMonth} =
   transcationSlice.actions;
 export default transcationSlice.reducer;

@@ -1,3 +1,3 @@
-export * from './Button/custom_button';
-export * from './Input Text/text_input';
-export * from './Text/custom_text';
+export * from './Button';
+export * from './Input Text';
+export * from './Text';

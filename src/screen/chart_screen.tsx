@@ -15,7 +15,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {catagoryByMonth} from '../redux/slice/transactionSlice';
 import {LineChart} from 'react-native-chart-kit';
 
-const ChartScreen = ({navigation, route}: any) => {
+export const ChartScreen = ({navigation, route}: any) => {
   const data = useSelector((state: any) => state.transaction);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(true);
@@ -95,7 +95,6 @@ const ChartScreen = ({navigation, route}: any) => {
     </View>
   );
 };
-export default ChartScreen;
 
 const styles = StyleSheet.create({
   container: {

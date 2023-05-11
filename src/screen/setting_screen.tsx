@@ -4,8 +4,9 @@ import AppBar from '../custom_widget/appbar';
 import {goBack} from '../utils/navigation';
 import { useDispatch } from 'react-redux';
 import { getData } from '../utils/firebase/read';
+import { CustomButton, CustomText } from '../common';
 
-const SettingScreen = ({navigation}: any) => {
+export const SettingScreen = ({navigation}: any) => {
   const dispatch= useDispatch();
 
   useEffect(()=>{
@@ -15,10 +16,11 @@ const SettingScreen = ({navigation}: any) => {
     <View style={styles.container}>
       <AppBar title="Setting" onBackPressed={() => goBack(navigation)} />
       <View style={{flex: 1}}></View>
+      <CustomButton/>
+      <CustomText/>
     </View>
   );
 };
-export default SettingScreen;
 
 const styles = StyleSheet.create({
   container: {

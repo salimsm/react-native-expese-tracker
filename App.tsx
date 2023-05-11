@@ -6,14 +6,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import AddScreen from './src/screen/add_screen';
 import SplashScreen from 'react-native-splash-screen';
-import LoginScreen from './src/screen/login_screen';
-import RegisterScreen from './src/screen/register_screen';
-import TranscationScreen from './src/screen/transcation_screen';
 import { Provider } from 'react-redux';
 import { store } from './src/redux/store/store';
-import SettingScreen from './src/screen/setting_screen';
-import CategoryScreen from './src/screen/category_screen';
-import ChartScreen from './src/screen/chart_screen';
+import { LoginScreen, RegisterScreen, TranscationScreen, SettingScreen, CategoryScreen, ChartScreen } from './src/screen';
 const Stack = createNativeStackNavigator();
 
 const App = () => {

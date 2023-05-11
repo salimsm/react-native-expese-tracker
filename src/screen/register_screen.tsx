@@ -6,13 +6,12 @@ import {
   View,
 } from 'react-native';
 import React, {useState} from 'react';
-import CustomButton from '../common/Button/custom_button';
-import CustomInputText from '../common/Input Text/text_input';
 import {registerFirebase} from '../utils/firebase/auth';
 import {goBack} from '../utils/navigation';
 import {AppString} from '../const/string/string';
+import { CustomButton, CustomInputText } from '../common';
 
-const RegisterScreen = ({navigation}: any) => {
+export const RegisterScreen = ({navigation}: any) => {
   const [email, setEmail] = useState('bob2@gmail.com');
   const [password, setPassword] = useState('123456');
 
@@ -54,8 +53,6 @@ const RegisterScreen = ({navigation}: any) => {
     </View>
   );
 };
-
-export default RegisterScreen;
 
 const styles = StyleSheet.create({
   container: {

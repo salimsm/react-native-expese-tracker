@@ -4,11 +4,9 @@ import {
   Text,
   View,
   TouchableOpacity,
+  RefreshControl,
 } from 'react-native';
-import React, {useEffect} from 'react';
-import Header from '../custom_widget/header';
-import Card from '../custom_widget/card';
-import RowContainer from '../custom_widget/row_container';
+import React, {useEffect, useState} from 'react';
 import {AppColors} from '../const/colors/colors';
 import BalanceCard from '../custom_widget/balance_card';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -17,22 +15,36 @@ import {goToNextPage} from '../utils/navigation';
 import {AppRoute} from '../const/routes/route';
 import {getData} from '../utils/firebase/read';
 import {useDispatch, useSelector} from 'react-redux';
-import {todayTransaction} from '../redux/slice/transactionSlice';
-import CategoryScreen from './category_screen';
+import Header from '../custom_widget/header';
+import RowContainer from '../custom_widget/row_container';
+import Card from '../custom_widget/card';
 
-const MainScreen = ({navigation}: any) => {
+export const MainScreen = ({navigation}: any) => {
+ console.log('MainScreen');
+  
+  const [refreshing,setRefreshing] = useState<boolean>(false);
   const data = useSelector((state: any) => state.transaction);
   const dispatch = useDispatch();
+
   useEffect(() => {
     getData(dispatch);
-    dispatch(todayTransaction());
+    // dispatch(todayTransaction());
   }, []);
 
-  // console.log(data,'main');
+  const onRefresh =()=>{
+    setRefreshing(true);
+    getData(dispatch);
+    setRefreshing(false);
+    // dispatch(todayTransaction());
+
+  }
 
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
         <View style={{paddingVertical: 10, paddingBottom: 20}}>
           <Header navigation={navigation} />
           <BalanceCard />

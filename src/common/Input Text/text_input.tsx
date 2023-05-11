@@ -9,7 +9,7 @@ interface IInputText {
   style?: StyleProp<TextStyle>;
 }
 
-const CustomInputText = ({placeholder,onChangeText ,style,secureText=false,value:value}: IInputText) => {
+export const CustomInputText = ({placeholder,onChangeText ,style,secureText=false,value:value}: IInputText) => {
   return <TextInput
   placeholder={placeholder}
   onChangeText={onChangeText}
@@ -28,5 +28,3 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
   }
 });
-
-export default CustomInputText;

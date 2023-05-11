@@ -7,7 +7,7 @@ interface IText {
   style?: StyleProp<TextStyle>;
 }
 
-const CustomText = ({text, color, style}: IText) => {
+export const CustomText = ({text, color, style}: IText) => {
   return <Text style={[styles.default, {color: color}, style]}>{text}</Text>;
 };
 
@@ -16,5 +16,3 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
 });
-
-export default CustomText;

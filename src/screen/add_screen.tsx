@@ -6,16 +6,15 @@ import {
   View,
 } from 'react-native';
 import React, {useState} from 'react';
-import CustomButton from '../common/Button/custom_button';
 import CategorySelector from '../custom_widget/category_selector';
 import CustomCalender from '../custom_widget/custom_calender';
 import {goBack} from '../utils/navigation';
-import CustomInputText from '../common/Input Text/text_input';
 import firestore from '@react-native-firebase/firestore';
 import AppBar from '../custom_widget/appbar';
 import {getDate} from '../utils/date';
+import { CustomInputText, CustomButton } from '../common';
 
-const AddScreen = ({navigation}: any) => {
+export const AddScreen = ({navigation}: any) => {
   const [amount, setAmount] = useState<number>(0);
   const [note, setNote] = useState('');
   const [catagory, setCatagory] = useState('Shopping');
@@ -115,16 +114,3 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
   },
 });
-
-/*
-onChangeText={v => {
-  //setAmount(parseInt(v))
-  let numValue = parseInt(v, 10);
-  if (v == '') {
-    setAmount(0);
-  }
-  if (v.length > 0 && !Number.isNaN(numValue)) {
-    setAmount(numValue);
-  }
-}}
-*/

@@ -1,25 +1,28 @@
 import React from 'react';
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet} from 'react-native';
 import ColumnText from './column_text';
 import LinearGradient from 'react-native-linear-gradient';
 import {AppColors} from '../const/colors/colors';
 import RowContainer from './row_container';
-import CustomText from '../common/Text/custom_text';
-import { useSelector } from 'react-redux';
-import { getDate } from '../utils/date';
+import {useSelector} from 'react-redux';
+import {getMonth, getMonthName, getYear} from '../utils/date';
+import { CustomText } from '../common';
 
 const BalanceCard = () => {
-  const data = useSelector((state:any)=>state.transaction);
+  const data = useSelector((state: any) => state.transaction);
   return (
     <LinearGradient
       colors={[AppColors.gradient.start, AppColors.gradient.end]}
       start={{x: 0, y: 0}}
       end={{x: 1, y: 1}}
       style={styles.linearGradient}>
-      <CustomText text={getDate().slice(0,7)} color={AppColors.white} />
-      
+      <CustomText
+        text={`${getYear()}-${getMonthName(getMonth())}`}
+        color={AppColors.white}
+      />
+
       <CustomText text="Total Balance" color={AppColors.white} />
-      
+
       <CustomText
         text={`$${data.totalBalance}`}
         color={AppColors.white}
@@ -39,7 +42,6 @@ const BalanceCard = () => {
           titleStyle={styles.textColor}
           subTitleStyle={styles.textColor}
           style={{alignItems: 'flex-end'}}
-
         />
       </RowContainer>
     </LinearGradient>
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
   large: {
     fontSize: 30,
     fontWeight: 'bold',
-    marginVertical:5
+    marginVertical: 5,
   },
   textColor: {
     color: AppColors.white,
