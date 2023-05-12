@@ -24,8 +24,7 @@ interface IData {
 }
 
 export const TranscationScreen = ({navigation}: any) => {
-  const dispatch = useDispatch();
-  console.log('transcationlist');
+  console.log('TranscationScreen');
   return (
     <View style={styles.container}>
       <AppBar title="Transcation" onBackPressed={() => goBack(navigation)} />
@@ -42,13 +41,16 @@ export const TranscationScreen = ({navigation}: any) => {
 
 
 const TranscationList = () => {
+  console.log('TranscationList');
+  
+
   const data = useSelector((state: any) => state.transaction.transactionList);
   const [uiList, setUIList] = useState([]);
-  //const [mark, setMark] = useState<any>();
-
-  let mark: any = {};
+  const [mark, setMark] = useState<any>({});
+  
   const mS = {selected: true, selectedColor: 'orange'};
 
+  // to get list of transcation of seleted day on calender
   const filterList = (date: string) => {
     console.log(date, 'from filter list');
     const value = data.filter((item: any) => item.date === date);
@@ -56,19 +58,21 @@ const TranscationList = () => {
   };
 
   const filterMarkedList = () => {
-    //const value =
     data.forEach((item: any) => {
       mark[item.date] = mS;
     });
-    // setUIList(value);
+    setMark(mark);
     console.log(mark,'from function');
   };
+
   useEffect(() => {
+    console.log('filterMarikedList    useEffect');
+    
     filterMarkedList();
   }, []);
+
   useEffect(() => {
-    // console.log(mark);
-    console.log('---------useEffect-------------');
+    console.log('setUi---------useEffect-------------');
     setUIList(data);
   }, []);
 
