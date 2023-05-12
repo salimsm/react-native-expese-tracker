@@ -92,6 +92,8 @@ const TranscationList = () => {
         <MessageCard msg="Nothing to show" />
       ) : (
         <FlatList
+        showsVerticalScrollIndicator={false}
+
           data={uiList}
           renderItem={({item}: any) => <SecondaryCard item={item} />}
         />

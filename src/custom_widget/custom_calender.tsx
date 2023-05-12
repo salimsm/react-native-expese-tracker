@@ -17,6 +17,8 @@ const CustomCalender = ({
   mark,
 }: ICustomCalender) => {
   const maxDateValue = getDate();
+  console.log(maxDateValue,'max date');
+  
 
   const [show, setShow] = useState(false);
   const [selectedValue, setSelectedValue] = useState(
@@ -39,6 +41,7 @@ const CustomCalender = ({
             setShow(!show);
             getSelectedDate(value.dateString);
           }}
+          maxDate={maxDateValue}
           markedDates={mark}
         />
       )}

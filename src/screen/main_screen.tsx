@@ -18,6 +18,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import Header from '../custom_widget/header';
 import RowContainer from '../custom_widget/row_container';
 import Card from '../custom_widget/card';
+import { getMonth, getMonthName } from '../utils/date';
 
 export const MainScreen = ({navigation}: any) => {
   console.log('MainScreen');
@@ -38,6 +39,7 @@ export const MainScreen = ({navigation}: any) => {
   return (
     <View style={styles.container}>
       <ScrollView
+        showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
@@ -68,9 +70,8 @@ export const MainScreen = ({navigation}: any) => {
   );
 };
 
-const CardList = ({navigation}: any) => {
-  console.log('cardList');
 
+const CardList = ({navigation}: any) => {
   const data = useSelector((state: any) => state.transaction.filterDataByMonth);
   const [price, setPrice] = useState<{
     food: number;
@@ -109,6 +110,7 @@ const CardList = ({navigation}: any) => {
         onPress={() =>
           navigation.navigate('CategoryScreen', {category: 'Entertainment'})
         }
+        date={getMonthName(getMonth())}
         amount={price?.entertainment}
       />
       <Card
@@ -118,12 +120,15 @@ const CardList = ({navigation}: any) => {
         onPress={() =>
           navigation.navigate('CategoryScreen', {category: 'Shopping'})
         }
+        date={getMonthName(getMonth())}
+
         amount={price?.shopping}
       />
       <Card
         bColor={AppColors.card.red}
         icon="airplanemode-active"
         title={AppString.category.travel}
+        date={getMonthName(getMonth())}
         amount={price?.travel}
         onPress={() =>
           navigation.navigate('CategoryScreen', {category: 'Travel'})
@@ -133,6 +138,7 @@ const CardList = ({navigation}: any) => {
         bColor={AppColors.card.green}
         icon="fastfood"
         title={AppString.category.food}
+        date={getMonthName(getMonth())}
         amount={price?.food}
         onPress={() =>
           navigation.navigate('CategoryScreen', {category: 'Food'})
@@ -143,6 +149,7 @@ const CardList = ({navigation}: any) => {
         bColor="green"
         icon="fastfood"
         title="Food"
+        date={getMonthName(getMonth())}
         onPress={() =>
           navigation.navigate('CategoryScreen', {category: 'Food'})
         }
@@ -151,6 +158,7 @@ const CardList = ({navigation}: any) => {
         bColor="green"
         icon="fastfood"
         title="Food"
+        date={getMonthName(getMonth())}
         onPress={() =>
           navigation.navigate('CategoryScreen', {category: 'Food'})
         }
@@ -159,6 +167,7 @@ const CardList = ({navigation}: any) => {
         bColor="green"
         icon="fastfood"
         title="Food"
+        date={getMonthName(getMonth())}
         onPress={() =>
           navigation.navigate('CategoryScreen', {category: 'Food'})
         }

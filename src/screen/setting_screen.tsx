@@ -1,10 +1,10 @@
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet, Text, TextInputComponent, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import AppBar from '../custom_widget/appbar';
 import {goBack} from '../utils/navigation';
 import { useDispatch } from 'react-redux';
 import { getData } from '../utils/firebase/read';
-import { CustomButton, CustomText } from '../common';
+import { CustomButton, CustomInputText, CustomText } from '../common';
 
 export const SettingScreen = ({navigation}: any) => {
   const dispatch= useDispatch();
@@ -15,9 +15,11 @@ export const SettingScreen = ({navigation}: any) => {
   return (
     <View style={styles.container}>
       <AppBar title="Setting" onBackPressed={() => goBack(navigation)} />
-      <View style={{flex: 1}}></View>
-      <CustomButton/>
+      <View style={{flex: 1}}>
+      <CustomInputText placeholder='Change Income' onChangeText={(v=>{})}/>
+      <CustomButton onPress={()=>{}} text='Change'style={{justifyContent:'center'}}/>
       <CustomText/>
+      </View>
     </View>
   );
 };
