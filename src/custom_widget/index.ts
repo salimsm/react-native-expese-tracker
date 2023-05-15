@@ -10,6 +10,8 @@ export * from './row_container';
 export * from './secondary_card';
 export * from './card_list';
 export * from './view_more';
+export * from './error_text';
+
 
 
 
