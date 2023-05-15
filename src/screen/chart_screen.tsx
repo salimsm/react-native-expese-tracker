@@ -1,6 +1,5 @@
 import {
   StyleSheet,
-  Text,
   View,
   Dimensions,
   ScrollView,
@@ -14,6 +13,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {catagoryByMonth} from '../redux/slice/transactionSlice';
 import {LineChart} from 'react-native-chart-kit';
 import { AppBar } from '../custom_widget';
+import { monthNameList } from '../const';
 
 export const ChartScreen = ({navigation, route}: any) => {
   const data = useSelector((state: any) => state.transaction);
@@ -36,7 +36,6 @@ export const ChartScreen = ({navigation, route}: any) => {
 
   useEffect(() => {
      dispatch(catagoryByMonth());
-     //extractData();
     }, []);
 
     useEffect(() => {
@@ -57,25 +56,11 @@ export const ChartScreen = ({navigation, route}: any) => {
           <ScrollView horizontal={true}>
             <LineChart
               data={{
-                labels: [
-                  'Jan',
-                  'Feb',
-                  'Mar',
-                  'Apr',
-                  'May',
-                  'June',
-                  'Jul',
-                  'Aug',
-                  'Sep',
-                  'Oct',
-                  'Nov',
-                  'Dec',
-                ],
+                labels: monthNameList,
                 datasets: [
                   {
                     data: 
                      dataY,
-                     //[2,3,4,5,6,7,8,9,2,5,2]
                   },
                 ],
               }}
@@ -91,7 +76,6 @@ export const ChartScreen = ({navigation, route}: any) => {
          )}
       </View>
       </ScrollView>
-      {/* <View style={{height:500 ,backgroundColor:'green'}}></View> */}
     </View>
   );
 };
