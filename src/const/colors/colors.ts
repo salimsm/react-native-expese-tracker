@@ -4,7 +4,7 @@ export const AppColors = {
     end: '#2F80ED',
   },
   background: '#F3F4F6',
-  primary: '',
+  primary: '#FFB621',
   secondary: '',
   white:'#FFFFFF',
   black:'#1B1B1B',

@@ -14,18 +14,19 @@ import {Formik} from 'formik';
 import {loginValidate} from '../utils/login_validation';
 import ErrorText from '../custom_widget/error_text';
 import {textInputStyles} from '../styles';
+import {AppColors} from '../const';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export const LoginScreen = ({navigation}: any) => {
   // const [email, setEmail] = useState('bob2@gmail.com');
   // const [password, setPassword] = useState('12345');
 
-  const handleLogin = async (values:any) => {
-    console.log(values,'values');
-    
+  const handleLogin = async (values: any) => {
+    console.log(values, 'values');
+
     try {
       const response = await loginFirebase(values.email, values.pwd);
-      console.log(response,'response');
-      
+      console.log(response, 'response');
     } catch (e: any) {
       ToastAndroid.show(e, ToastAndroid.SHORT);
     }
@@ -45,6 +46,7 @@ export const LoginScreen = ({navigation}: any) => {
             onBlur={handleBlur('email')}
             value={values.email}
             style={textInputStyles.textInput}
+            placeholder="Email"
           />
           {errors.email && <ErrorText message={errors.email} />}
 
@@ -53,6 +55,7 @@ export const LoginScreen = ({navigation}: any) => {
             onBlur={handleBlur('pwd')}
             value={values.pwd}
             style={textInputStyles.textInput}
+            placeholder="Password"
           />
           {errors.pwd && <ErrorText message={errors.pwd} />}
 
@@ -63,8 +66,10 @@ export const LoginScreen = ({navigation}: any) => {
           />
 
           <TouchableOpacity
+            style={styles.secondaryBtn}
             onPress={() => navigation.navigate('RegisterScreen')}>
-            <Text style={{textAlign: 'right'}}>Register</Text>
+            <Text style={{fontSize: 17}}>Register</Text>
+            <Icon name="arrow-forward" size={20}/>
           </TouchableOpacity>
         </View>
       )}
@@ -78,5 +83,14 @@ const styles = StyleSheet.create({
     padding: 18,
     backgroundColor: '#F0EAF4',
     justifyContent: 'center',
+  },
+  secondaryBtn: {
+    backgroundColor: AppColors.primary,
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+    padding: 8,
+    borderRadius: 20,
+    marginVertical: 10,
   },
 });
