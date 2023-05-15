@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 interface IBackButton {
   onPress: () => void;
 }
-const BackButton = ({onPress}: IBackButton) => {
+export const BackButton = ({onPress}: IBackButton) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <Icon name="chevron-left" size={30} />
@@ -22,5 +22,3 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-export default BackButton;

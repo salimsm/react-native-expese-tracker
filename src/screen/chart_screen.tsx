@@ -9,11 +9,11 @@ import {
 
 import React, {useEffect, useState} from 'react';
 
-import AppBar from '../custom_widget/appbar';
 import {goBack} from '../utils/navigation';
 import {useDispatch, useSelector} from 'react-redux';
 import {catagoryByMonth} from '../redux/slice/transactionSlice';
 import {LineChart} from 'react-native-chart-kit';
+import { AppBar } from '../custom_widget';
 
 export const ChartScreen = ({navigation, route}: any) => {
   const data = useSelector((state: any) => state.transaction);

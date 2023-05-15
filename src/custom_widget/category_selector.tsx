@@ -6,7 +6,7 @@ import { CustomButton, CustomText } from '../common';
 interface ICategorySelector {
   getCategoryValue: (category: string) => void;
 }
-const CategorySelector = ({getCategoryValue}: ICategorySelector) => {
+export const CategorySelector = ({getCategoryValue}: ICategorySelector) => {
   const [show, setShow] = useState(false);
   const [selectedValue, setSelectedValue] = useState(
     AppString.category.shopping,
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CategorySelector;
+

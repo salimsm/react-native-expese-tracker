@@ -1,9 +1,9 @@
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import RowContainer from './row_container';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import ColumnText from './column_text';
 import {AppColors} from '../const/colors/colors';
 import { CustomText } from '../common';
+import { ColumnText } from './column_text';
 
 interface ICard {
   bColor?: string;
@@ -13,7 +13,7 @@ interface ICard {
   amount?: number;
   onPress?:()=>void;
 }
-const Card = ({bColor, icon, title, date='', amount=0,onPress}: ICard) => {
+export const Card = ({bColor, icon, title, date='', amount=0,onPress}: ICard) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <RowContainer>
@@ -22,13 +22,13 @@ const Card = ({bColor, icon, title, date='', amount=0,onPress}: ICard) => {
             style={[styles.circularImageBackground, {backgroundColor: bColor}]}>
             <Icon name={icon} size={32} color="#F0EAF4" />
           </View>
-          <CustomText style={{color: 'black'}} text={title} />
+          <CustomText style={styles.title} text={title} />
         </View>
 
         <ColumnText
           title={date}
           subTitle={amount}
-          style={{alignItems: 'flex-end'}}
+          style={styles.columnText}
         />
       </RowContainer>
     </TouchableOpacity>
@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  title:{color: 'black'},
+  columnText:{alignItems: 'flex-end'}
 });
 
-export default Card;

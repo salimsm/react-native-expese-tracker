@@ -1,3 +1,3 @@
-export * from './colors/colors';
-export * from './routes/route';
-export * from './string/string';
+export * from './colors';
+export * from './routes';
+export * from './string';

@@ -1,20 +1,14 @@
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import AppBar from '../custom_widget/appbar';
 import {goBack} from '../utils/navigation';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {AppColors} from '../const/colors/colors';
 import SecondaryCard from '../custom_widget/secondary_card';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CustomCalender from '../custom_widget/custom_calender';
 import MessageCard from '../custom_widget/message_card';
-import { CustomText } from '../common';
+import {CustomText} from '../common';
+import { AppBar } from '../custom_widget';
 
 interface IData {
   amount: number;
@@ -39,15 +33,13 @@ export const TranscationScreen = ({navigation}: any) => {
   );
 };
 
-
 const TranscationList = () => {
   console.log('TranscationList');
-  
 
   const data = useSelector((state: any) => state.transaction.transactionList);
   const [uiList, setUIList] = useState([]);
   const [mark, setMark] = useState<any>({});
-  
+
   const mS = {selected: true, selectedColor: 'orange'};
 
   // to get list of transcation of seleted day on calender
@@ -62,12 +54,12 @@ const TranscationList = () => {
       mark[item.date] = mS;
     });
     setMark(mark);
-    console.log(mark,'from function');
+    console.log(mark, 'from function');
   };
 
   useEffect(() => {
     console.log('filterMarikedList    useEffect');
-    
+
     filterMarkedList();
   }, []);
 
@@ -92,8 +84,7 @@ const TranscationList = () => {
         <MessageCard msg="Nothing to show" />
       ) : (
         <FlatList
-        showsVerticalScrollIndicator={false}
-
+          showsVerticalScrollIndicator={false}
           data={uiList}
           renderItem={({item}: any) => <SecondaryCard item={item} />}
         />

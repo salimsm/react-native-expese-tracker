@@ -11,15 +11,12 @@ interface ICustomCalender {
   mark?: {};
 }
 
-const CustomCalender = ({
+export const CustomCalender = ({
   getSelectedDate,
   showToday = true,
   mark,
 }: ICustomCalender) => {
   const maxDateValue = getDate();
-  console.log(maxDateValue,'max date');
-  
-
   const [show, setShow] = useState(false);
   const [selectedValue, setSelectedValue] = useState(
     showToday ? `${getDate()}` : '',
@@ -41,7 +38,7 @@ const CustomCalender = ({
             setShow(!show);
             getSelectedDate(value.dateString);
           }}
-          maxDate={maxDateValue}
+          // maxDate={maxDateValue}
           markedDates={mark}
         />
       )}

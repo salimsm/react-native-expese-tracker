@@ -1,24 +1,23 @@
-import {FlatList, StyleSheet, Text, TextInputComponent, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import AppBar from '../custom_widget/appbar';
+import {StyleSheet, View} from 'react-native';
+import React, {useEffect} from 'react';
 import {goBack} from '../utils/navigation';
-import { useDispatch } from 'react-redux';
-import { getData } from '../utils/firebase/read';
-import { CustomButton, CustomInputText, CustomText } from '../common';
+import {useDispatch} from 'react-redux';
+import {getData} from '../utils/firebase/read';
+import {CustomButton, CustomInputText, CustomText} from '../common';
+import { AppBar } from '../custom_widget';
 
 export const SettingScreen = ({navigation}: any) => {
-  const dispatch= useDispatch();
-
-  useEffect(()=>{
+  const dispatch = useDispatch();
+  useEffect(() => {
     getData(dispatch);
-  },[]);
+  }, []);
   return (
     <View style={styles.container}>
       <AppBar title="Setting" onBackPressed={() => goBack(navigation)} />
-      <View style={{flex: 1}}>
-      <CustomInputText placeholder='Change Income' onChangeText={(v=>{})}/>
-      <CustomButton onPress={()=>{}} text='Change'style={{justifyContent:'center'}}/>
-      <CustomText/>
+      <View style={styles.subContainer}>
+        <CustomInputText placeholder="Change Income" onChangeText={v => {}} />
+        <CustomButton onPress={() => {}} text="Change" style={styles.button} />
+        <CustomText />
       </View>
     </View>
   );
@@ -31,4 +30,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#F0EAF4',
     justifyContent: 'center',
   },
+  subContainer: {flex: 1},
+  button: {justifyContent: 'center'},
 });
