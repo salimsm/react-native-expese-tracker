@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {AppColors} from '../const';
 
-const MessageCard = ({msg}: {msg: string}) => {
+export const MessageCard = ({msg}: {msg: string}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{msg}</Text>

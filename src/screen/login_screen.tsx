@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {loginFirebase} from '../utils/firebase/auth';
-import {AppString} from '../const/string/string';
 import { CustomInputText, CustomButton } from '../common';
 
 export const LoginScreen = ({navigation}: any) => {

@@ -1,11 +1,10 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import ColumnText from './column_text';
 import { goToNextPage } from '../utils/navigation';
-import SettingScreen from '../screen/setting_screen';
+import { ColumnText } from './column_text';
 
-const Header = ({navigation}:any) => {
+export const Header = ({navigation}:any) => {
 
   return (
     <View

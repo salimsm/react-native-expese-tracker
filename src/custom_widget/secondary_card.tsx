@@ -1,9 +1,6 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import RowContainer from './row_container';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import ColumnText from './column_text';
 import {AppColors} from '../const/colors/colors';
-import CustomText from '../common/Text/custom_text';
 
 interface IData {
   amount: number;
@@ -14,7 +11,7 @@ interface IData {
 interface ISecondaryCard {
   item: IData;
 }
-const SecondaryCard = ({item}: ISecondaryCard) => {
+export const SecondaryCard = ({item}: ISecondaryCard) => {
   return (
     <View
       style={{

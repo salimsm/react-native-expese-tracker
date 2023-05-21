@@ -15,7 +15,7 @@ interface IColumnText {
   titleStyle?: StyleProp<TextStyle>;
   subTitleStyle?: StyleProp<TextStyle>;
 }
-const ColumnText = ({
+export const ColumnText = ({
   title,
   subTitle,
   style,
@@ -35,4 +35,3 @@ const styles = StyleSheet.create({
   subTitle: {fontSize: 20, fontWeight: 'bold'},
 });
 
-export default ColumnText;

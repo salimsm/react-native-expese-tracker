@@ -6,11 +6,11 @@ import {
   View,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
-import AppBar from '../custom_widget/appbar';
 import {goBack} from '../utils/navigation';
 import {useSelector} from 'react-redux';
 import {AppColors} from '../const/colors/colors';
 import RowContainer from '../custom_widget/row_container';
+import {AppBar} from '../custom_widget';
 
 export const CategoryScreen = ({navigation, route}: any) => {
   const {category} = route.params;

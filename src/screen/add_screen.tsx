@@ -6,13 +6,12 @@ import {
   View,
 } from 'react-native';
 import React, {useState} from 'react';
-import CategorySelector from '../custom_widget/category_selector';
 import CustomCalender from '../custom_widget/custom_calender';
 import {goBack} from '../utils/navigation';
 import firestore from '@react-native-firebase/firestore';
-import AppBar from '../custom_widget/appbar';
 import {getDate} from '../utils/date';
 import { CustomInputText, CustomButton } from '../common';
+import { AppBar, CategorySelector } from '../custom_widget';
 
 export const AddScreen = ({navigation}: any) => {
   const [amount, setAmount] = useState<number>(0);
@@ -75,7 +74,6 @@ export const AddScreen = ({navigation}: any) => {
           <CustomCalender getSelectedDate={v => setDate(v)} />
         </View>
       </ScrollView>
-
       <CustomButton
         text="Save"
         style={{justifyContent: 'center'}}
@@ -84,7 +82,6 @@ export const AddScreen = ({navigation}: any) => {
     </View>
   );
 };
-
 export default AddScreen;
 
 const styles = StyleSheet.create({

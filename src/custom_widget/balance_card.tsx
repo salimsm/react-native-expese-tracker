@@ -1,14 +1,14 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import ColumnText from './column_text';
 import LinearGradient from 'react-native-linear-gradient';
 import {AppColors} from '../const/colors/colors';
 import RowContainer from './row_container';
 import {useSelector} from 'react-redux';
 import {getMonth, getMonthName, getYear} from '../utils/date';
 import { CustomText } from '../common';
+import { ColumnText } from './column_text';
 
-const BalanceCard = () => {
+export const BalanceCard = () => {
   const data = useSelector((state: any) => state.transaction);
   return (
     <LinearGradient
@@ -68,5 +68,3 @@ const styles = StyleSheet.create({
     color: AppColors.white,
   },
 });
-
-export default BalanceCard;
