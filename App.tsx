@@ -21,9 +21,9 @@ const App = () => {
         screenOptions={{
           headerShown: false,
         }}>
+        <Stack.Screen name="MainScreen" component={MainScreen} />
         <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
-        <Stack.Screen name="MainScreen" component={MainScreen} />
         <Stack.Screen name="AddScreen" component={AddScreen} />
         <Stack.Screen name="TranscationScreen" component={TranscationScreen} />
         <Stack.Screen name="SettingScreen" component={SettingScreen} />
