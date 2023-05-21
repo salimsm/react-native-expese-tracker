@@ -13,8 +13,10 @@ import {AppColors} from '../const/colors/colors';
 import BalanceCard from '../custom_widget/balance_card';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {AppString} from '../const/string/string';
+import {goToNextPage} from '../utils/navigation';
+import {AppRoute} from '../const/routes/route';
 
-const MainScreen = () => {
+const MainScreen = ({navigation}: any) => {
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -56,7 +58,9 @@ const MainScreen = () => {
         </View>
       </ScrollView>
 
-      <TouchableOpacity style={styles.floatingButton}>
+      <TouchableOpacity
+        style={styles.floatingButton}
+        onPress={() => goToNextPage(navigation, AppRoute.AddScreen)}>
         <Icon name="add" size={38} color="white" />
       </TouchableOpacity>
     </View>

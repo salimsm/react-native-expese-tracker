@@ -10,3 +10,5 @@ export const AppString = {
   income: 'Income',
   expense: 'Expenses',
 };
+
+export const CategoryList = ['Shopping','Food','Travel','Entertainment'];

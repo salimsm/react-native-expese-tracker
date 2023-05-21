@@ -1,0 +1,18 @@
+
+
+packages:
+
+
+1) React Native Vector Icon:
+    "@types/react-native-vector-icons": "^6.4.13",
+    "@types/react-native-vector-icons": "^6.4.13",
+
+2) React Native Liner Gradient:
+    "react-native-linear-gradient": "^2.6.2",
+
+
+branch : 
+1) master
+2) folder-structure
+3) add-page
+4) feature/splash

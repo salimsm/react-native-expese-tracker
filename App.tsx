@@ -1,13 +1,28 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
+import React, { useEffect } from 'react';
+import {StyleSheet} from 'react-native';
 import MainScreen from './src/screen/main_screen';
 
-const App = () => {
-  return <SafeAreaView style={{flex:1}}>
-    <MainScreen/>
-  </SafeAreaView>;
-};
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import AddScreen from './src/screen/add_screen';
+import SplashScreen from 'react-native-splash-screen';
+const Stack = createNativeStackNavigator();
 
+const App = () => {
+  useEffect(()=>{
+    SplashScreen.hide();
+  },[]);
+  return (
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{
+        headerShown:false
+        }}>
+        <Stack.Screen name="MainScreen" component={MainScreen} />
+        <Stack.Screen name="AddScreen" component={AddScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
 const styles = StyleSheet.create({});
 
 export default App;
