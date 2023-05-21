@@ -14,6 +14,7 @@ const BalanceCard = () => {
       end={{x: 1, y: 1}}
       style={styles.linearGradient}>
       <CustomText text="Total Balance" color={AppColors.white} />
+      
       <CustomText
         text="$ 48000.00"
         color={AppColors.white}
@@ -52,6 +53,7 @@ const styles = StyleSheet.create({
   large: {
     fontSize: 30,
     fontWeight: 'bold',
+    marginVertical:5
   },
   textColor: {
     color: AppColors.white,
