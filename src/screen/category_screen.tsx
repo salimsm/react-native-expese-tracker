@@ -8,11 +8,11 @@ import {
 import React, {useEffect, useState} from 'react';
 import AppBar from '../custom_widget/appbar';
 import {goBack} from '../utils/navigation';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {AppColors} from '../const/colors/colors';
 import RowContainer from '../custom_widget/row_container';
 
-const CategoryScreen = ({navigation, route}: any) => {
+export const CategoryScreen = ({navigation, route}: any) => {
   const {category} = route.params;
   const data = useSelector((state: any) => state.transaction);
   const [loading, setLoading] = useState(true);
@@ -64,7 +64,6 @@ const CategoryScreen = ({navigation, route}: any) => {
     </View>
   );
 };
-export default CategoryScreen;
 
 const styles = StyleSheet.create({
   container: {

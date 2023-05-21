@@ -1,34 +1,46 @@
-import {ScrollView, StyleSheet, TextInput, View} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  TextInput,
+  ToastAndroid,
+  View,
+} from 'react-native';
 import React, {useState} from 'react';
-import CustomButton from '../common/Button/custom_button';
 import CategorySelector from '../custom_widget/category_selector';
 import CustomCalender from '../custom_widget/custom_calender';
 import {goBack} from '../utils/navigation';
-import CustomInputText from '../common/Input Text/text_input';
 import firestore from '@react-native-firebase/firestore';
 import AppBar from '../custom_widget/appbar';
+import {getDate} from '../utils/date';
+import { CustomInputText, CustomButton } from '../common';
 
-const AddScreen = ({navigation}: any) => {
-  const [amount, setAmount] = useState(0);
+export const AddScreen = ({navigation}: any) => {
+  const [amount, setAmount] = useState<number>(0);
   const [note, setNote] = useState('');
-  const [catagory, setCatagory] = useState('');
-  const [date, setDate] = useState('');
+  const [catagory, setCatagory] = useState('Shopping');
+  const [date, setDate] = useState(getDate());
 
   console.log('AddScreen');
-
   const handleSave = () => {
-    firestore()
-      .collection('01userId')
-      .add({
-        note: note,
-        amount: amount,
-        catagory: catagory,
-        date: date,
-      })
-      .then(() => {
-        setAmount(0);
-        setNote('');
-      });
+    if (amount <= 0) {
+      ToastAndroid.show('Amount cannot be 0 or less!', ToastAndroid.SHORT);
+    } else if (note === '' || note === null) {
+      ToastAndroid.show('Note cannot be empty!', ToastAndroid.SHORT);
+    } else {
+      firestore()
+        .collection('01userId')
+        .add({
+          note: note,
+          amount: amount,
+          catagory: catagory,
+          date: date,
+        })
+        .then(() => {
+          setAmount(0);
+          setNote('');
+          ToastAndroid.show('Sucessfully added!', ToastAndroid.SHORT);
+        });
+    }
     console.log({catagory: catagory, date: date, amount: amount, note: note});
   };
   return (
@@ -38,11 +50,19 @@ const AddScreen = ({navigation}: any) => {
       <ScrollView>
         <View style={styles.topHalf}>
           <TextInput
-            placeholder="$0.0"
+            // placeholder="$0.0"
             style={styles.amtTextInput}
             keyboardType="number-pad"
             value={amount.toString()}
-            onChangeText={v => setAmount(parseInt(v))}
+            onChangeText={v => {
+              let numValue = parseInt(v, 10);
+              if (v == '') {
+                setAmount(0);
+              }
+              if (v.length > 0 && !Number.isNaN(numValue)) {
+                setAmount(numValue);
+              }
+            }}
           />
           <CustomInputText
             placeholder="Note"
@@ -52,7 +72,7 @@ const AddScreen = ({navigation}: any) => {
           />
 
           <CategorySelector getCategoryValue={value => setCatagory(value)} />
-          <CustomCalender getDate={v => setDate(v)} />
+          <CustomCalender getSelectedDate={v => setDate(v)} />
         </View>
       </ScrollView>
 

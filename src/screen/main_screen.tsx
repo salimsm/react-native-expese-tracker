@@ -4,11 +4,9 @@ import {
   Text,
   View,
   TouchableOpacity,
+  RefreshControl,
 } from 'react-native';
-import React, {useEffect} from 'react';
-import Header from '../custom_widget/header';
-import Card from '../custom_widget/card';
-import RowContainer from '../custom_widget/row_container';
+import React, {useEffect, useState} from 'react';
 import {AppColors} from '../const/colors/colors';
 import BalanceCard from '../custom_widget/balance_card';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -17,22 +15,32 @@ import {goToNextPage} from '../utils/navigation';
 import {AppRoute} from '../const/routes/route';
 import {getData} from '../utils/firebase/read';
 import {useDispatch, useSelector} from 'react-redux';
-import {todayTransaction} from '../redux/slice/transactionSlice';
-import CategoryScreen from './category_screen';
+import Header from '../custom_widget/header';
+import RowContainer from '../custom_widget/row_container';
+import Card from '../custom_widget/card';
 
-const MainScreen = ({navigation}: any) => {
-  const data = useSelector((state: any) => state.transaction);
+export const MainScreen = ({navigation}: any) => {
+  console.log('MainScreen');
+
+  const [refreshing, setRefreshing] = useState<boolean>(false);
   const dispatch = useDispatch();
+
   useEffect(() => {
     getData(dispatch);
-    dispatch(todayTransaction());
   }, []);
 
-  // console.log(data,'main');
+  const onRefresh = () => {
+    setRefreshing(true);
+    getData(dispatch);
+    setRefreshing(false);
+  };
 
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
         <View style={{paddingVertical: 10, paddingBottom: 20}}>
           <Header navigation={navigation} />
           <BalanceCard />
@@ -47,63 +55,7 @@ const MainScreen = ({navigation}: any) => {
             </TouchableOpacity>
           </RowContainer>
 
-          <Card
-            bColor={AppColors.card.orange}
-            icon="ondemand-video"
-            title={AppString.category.entertainment}
-            onPress={() =>
-              navigation.navigate('CategoryScreen', {category: 'Entertainment'})
-            }
-          />
-          <Card
-            bColor={AppColors.card.purple}
-            icon="add-shopping-cart"
-            title={AppString.category.shopping}
-            onPress={() =>
-              navigation.navigate('CategoryScreen', {category: 'Shopping'})
-            }
-          />
-          <Card
-            bColor={AppColors.card.red}
-            icon="airplanemode-active"
-            title={AppString.category.travel}
-            onPress={() =>
-              navigation.navigate('CategoryScreen', {category: 'Travel'})
-            }
-          />
-          <Card
-            bColor={AppColors.card.green}
-            icon="fastfood"
-            title={AppString.category.food}
-            onPress={() =>
-              navigation.navigate('CategoryScreen', {category: 'Food'})
-            }
-          />
-
-          <Card
-            bColor="green"
-            icon="fastfood"
-            title="Food"
-            onPress={() =>
-              navigation.navigate('CategoryScreen', {category: 'Food'})
-            }
-          />
-          <Card
-            bColor="green"
-            icon="fastfood"
-            title="Food"
-            onPress={() =>
-              navigation.navigate('CategoryScreen', {category: 'Food'})
-            }
-          />
-          <Card
-            bColor="green"
-            icon="fastfood"
-            title="Food"
-            onPress={() =>
-              navigation.navigate('CategoryScreen', {category: 'Food'})
-            }
-          />
+          <CardList navigation={navigation} />
         </View>
       </ScrollView>
 
@@ -116,13 +68,109 @@ const MainScreen = ({navigation}: any) => {
   );
 };
 
-export default MainScreen;
+const CardList = ({navigation}: any) => {
+  console.log('cardList');
+
+  const data = useSelector((state: any) => state.transaction.filterDataByMonth);
+  const [price, setPrice] = useState<{
+    food: number;
+    shopping: number;
+    entertainment: number;
+    travel: number;
+  }>();
+
+  const getEachCategoryAmt = () => {
+    let obj = {food: 0, shopping: 0, entertainment: 0, travel: 0};
+    data.forEach((value: any) => {
+      if (value.catagory === AppString.category.food) {
+        obj.food += value.amount;
+      } else if (value.catagory === AppString.category.entertainment) {
+        obj.entertainment += value.amount;
+      } else if (value.catagory === AppString.category.shopping) {
+        obj.shopping += value.amount;
+      } else if (value.catagory === AppString.category.travel) {
+        obj.travel += value.amount;
+      }
+    });
+    console.log(obj);
+    setPrice(obj);
+  };
+
+  useEffect(() => {
+    getEachCategoryAmt();
+  }, [data]);
+
+  return (
+    <View>
+      <Card
+        bColor={AppColors.card.orange}
+        icon="ondemand-video"
+        title={AppString.category.entertainment}
+        onPress={() =>
+          navigation.navigate('CategoryScreen', {category: 'Entertainment'})
+        }
+        amount={price?.entertainment}
+      />
+      <Card
+        bColor={AppColors.card.purple}
+        icon="add-shopping-cart"
+        title={AppString.category.shopping}
+        onPress={() =>
+          navigation.navigate('CategoryScreen', {category: 'Shopping'})
+        }
+        amount={price?.shopping}
+      />
+      <Card
+        bColor={AppColors.card.red}
+        icon="airplanemode-active"
+        title={AppString.category.travel}
+        amount={price?.travel}
+        onPress={() =>
+          navigation.navigate('CategoryScreen', {category: 'Travel'})
+        }
+      />
+      <Card
+        bColor={AppColors.card.green}
+        icon="fastfood"
+        title={AppString.category.food}
+        amount={price?.food}
+        onPress={() =>
+          navigation.navigate('CategoryScreen', {category: 'Food'})
+        }
+      />
+
+      <Card
+        bColor="green"
+        icon="fastfood"
+        title="Food"
+        onPress={() =>
+          navigation.navigate('CategoryScreen', {category: 'Food'})
+        }
+      />
+      <Card
+        bColor="green"
+        icon="fastfood"
+        title="Food"
+        onPress={() =>
+          navigation.navigate('CategoryScreen', {category: 'Food'})
+        }
+      />
+      <Card
+        bColor="green"
+        icon="fastfood"
+        title="Food"
+        onPress={() =>
+          navigation.navigate('CategoryScreen', {category: 'Food'})
+        }
+      />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 18,
-    // backgroundColor:'#F0EAF4'
   },
   floatingButton: {
     position: 'absolute',

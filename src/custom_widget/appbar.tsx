@@ -1,9 +1,5 @@
-import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import CustomButton from '../common/Button/custom_button';
-import CustomText from '../common/Text/custom_text';
-import {AppColors} from '../const/colors/colors';
-import {AppString, CategoryList} from '../const/string/string';
+import React from 'react';
+import {StyleSheet, Text} from 'react-native';
 import RowContainer from './row_container';
 import BackButton from './back_button';
 

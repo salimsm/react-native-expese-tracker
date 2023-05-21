@@ -6,12 +6,11 @@ import {
   View,
 } from 'react-native';
 import React, {useState} from 'react';
-import CustomButton from '../common/Button/custom_button';
-import CustomInputText from '../common/Input Text/text_input';
 import {loginFirebase} from '../utils/firebase/auth';
 import {AppString} from '../const/string/string';
+import { CustomInputText, CustomButton } from '../common';
 
-const LoginScreen = ({navigation}: any) => {
+export const LoginScreen = ({navigation}: any) => {
   const [email, setEmail] = useState('bob2@gmail.com');
   const [password, setPassword] = useState('12345');
 
@@ -47,8 +46,6 @@ const LoginScreen = ({navigation}: any) => {
     </View>
   );
 };
-
-export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: {

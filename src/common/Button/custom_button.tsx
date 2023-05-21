@@ -12,7 +12,7 @@ interface ICustomButton {
   style?: StyleProp<ViewStyle>;
   onPress?:()=>void;
 }
-const CustomButton = ({icon, text, style,onPress}: ICustomButton) => {
+export const CustomButton = ({icon, text, style,onPress}: ICustomButton) => {
   return (
     <TouchableOpacity style={[styles.button, style]} onPress={onPress}>
       {icon && <Icon name={icon} size={28} style={styles.icon} />}
@@ -34,4 +34,3 @@ const styles = StyleSheet.create({
   text: {fontSize: 17},
 });
 
-export default CustomButton;

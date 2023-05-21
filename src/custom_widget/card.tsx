@@ -1,9 +1,9 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import RowContainer from './row_container';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import ColumnText from './column_text';
 import {AppColors} from '../const/colors/colors';
-import CustomText from '../common/Text/custom_text';
+import { CustomText } from '../common';
 
 interface ICard {
   bColor?: string;
@@ -13,7 +13,7 @@ interface ICard {
   amount?: number;
   onPress?:()=>void;
 }
-const Card = ({bColor, icon, title, date, amount,onPress}: ICard) => {
+const Card = ({bColor, icon, title, date, amount=0,onPress}: ICard) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <RowContainer>
@@ -27,7 +27,7 @@ const Card = ({bColor, icon, title, date, amount,onPress}: ICard) => {
 
         <ColumnText
           title="Today"
-          subTitle="20000"
+          subTitle={amount}
           style={{alignItems: 'flex-end'}}
         />
       </RowContainer>
