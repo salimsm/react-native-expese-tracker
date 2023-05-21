@@ -17,16 +17,19 @@ import {goToNextPage} from '../utils/navigation';
 import {AppRoute} from '../const/routes/route';
 import {getData} from '../utils/firebase/read';
 import {useDispatch, useSelector} from 'react-redux';
+import {todayTransaction} from '../redux/slice/transactionSlice';
+import CategoryScreen from './category_screen';
 
 const MainScreen = ({navigation}: any) => {
-  const data = useSelector((state:any)=>state.transaction);
+  const data = useSelector((state: any) => state.transaction);
   const dispatch = useDispatch();
   useEffect(() => {
     getData(dispatch);
+    dispatch(todayTransaction());
   }, []);
 
   // console.log(data,'main');
-  
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -48,26 +51,59 @@ const MainScreen = ({navigation}: any) => {
             bColor={AppColors.card.orange}
             icon="ondemand-video"
             title={AppString.category.entertainment}
+            onPress={() =>
+              navigation.navigate('CategoryScreen', {category: 'Entertainment'})
+            }
           />
           <Card
             bColor={AppColors.card.purple}
             icon="add-shopping-cart"
             title={AppString.category.shopping}
+            onPress={() =>
+              navigation.navigate('CategoryScreen', {category: 'Shopping'})
+            }
           />
           <Card
             bColor={AppColors.card.red}
             icon="airplanemode-active"
             title={AppString.category.travel}
+            onPress={() =>
+              navigation.navigate('CategoryScreen', {category: 'Travel'})
+            }
           />
           <Card
             bColor={AppColors.card.green}
             icon="fastfood"
             title={AppString.category.food}
+            onPress={() =>
+              navigation.navigate('CategoryScreen', {category: 'Food'})
+            }
           />
 
-          <Card bColor="green" icon="fastfood" title="Food" />
-          <Card bColor="green" icon="fastfood" title="Food" />
-          <Card bColor="green" icon="fastfood" title="Food" />
+          <Card
+            bColor="green"
+            icon="fastfood"
+            title="Food"
+            onPress={() =>
+              navigation.navigate('CategoryScreen', {category: 'Food'})
+            }
+          />
+          <Card
+            bColor="green"
+            icon="fastfood"
+            title="Food"
+            onPress={() =>
+              navigation.navigate('CategoryScreen', {category: 'Food'})
+            }
+          />
+          <Card
+            bColor="green"
+            icon="fastfood"
+            title="Food"
+            onPress={() =>
+              navigation.navigate('CategoryScreen', {category: 'Food'})
+            }
+          />
         </View>
       </ScrollView>
 

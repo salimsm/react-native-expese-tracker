@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import RowContainer from './row_container';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import ColumnText from './column_text';
@@ -11,10 +11,11 @@ interface ICard {
   title?: string;
   date?: string;
   amount?: number;
+  onPress?:()=>void;
 }
-const Card = ({bColor, icon, title, date, amount}: ICard) => {
+const Card = ({bColor, icon, title, date, amount,onPress}: ICard) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <RowContainer>
         <View style={styles.subRightContainer}>
           <View
@@ -30,7 +31,7 @@ const Card = ({bColor, icon, title, date, amount}: ICard) => {
           style={{alignItems: 'flex-end'}}
         />
       </RowContainer>
-    </View>
+    </TouchableOpacity>
   );
 };
 
