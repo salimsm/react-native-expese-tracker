@@ -17,6 +17,7 @@
     "@react-navigation/native-stack": "^6.9.12",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/react-native-vector-icons": "^6.4.13",
+    "formik": "^2.2.9",
     "react": "18.1.0",
     "react-native": "0.70.6",
     "react-native-calendars": "^1.1295.0",

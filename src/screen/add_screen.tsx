@@ -71,7 +71,8 @@ export const AddScreen = ({navigation}: any) => {
           />
 
           <CategorySelector getCategoryValue={value => setCatagory(value)} />
-          <CustomCalender getSelectedDate={v => setDate(v)} />
+          <CustomCalender getSelectedDate={v => {setDate(v); console.log(v);
+          }} />
         </View>
       </ScrollView>
       <CustomButton
