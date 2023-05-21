@@ -5,7 +5,7 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import Header from '../custom_widget/header';
 import Card from '../custom_widget/card';
 import RowContainer from '../custom_widget/row_container';
@@ -15,21 +15,31 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {AppString} from '../const/string/string';
 import {goToNextPage} from '../utils/navigation';
 import {AppRoute} from '../const/routes/route';
-import TranscationScreen from './transcation_screen';
+import {getData} from '../utils/firebase/read';
+import {useDispatch, useSelector} from 'react-redux';
 
 const MainScreen = ({navigation}: any) => {
+  const data = useSelector((state:any)=>state.transaction);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    getData(dispatch);
+  }, []);
+
+  // console.log(data,'main');
+  
   return (
     <View style={styles.container}>
       <ScrollView>
         <View style={{paddingVertical: 10, paddingBottom: 20}}>
-          <Header />
+          <Header navigation={navigation} />
           <BalanceCard />
 
           <RowContainer style={{marginVertical: 20}}>
             <Text style={{fontSize: 17, fontWeight: 'bold', color: 'black'}}>
               Transcation
             </Text>
-            <TouchableOpacity onPress={()=>goToNextPage(navigation,'TranscationScreen')}>
+            <TouchableOpacity
+              onPress={() => goToNextPage(navigation, 'TranscationScreen')}>
               <Text style={{fontSize: 17, color: 'black'}}>View All</Text>
             </TouchableOpacity>
           </RowContainer>

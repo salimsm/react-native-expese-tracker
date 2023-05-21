@@ -5,8 +5,10 @@ import LinearGradient from 'react-native-linear-gradient';
 import {AppColors} from '../const/colors/colors';
 import RowContainer from './row_container';
 import CustomText from '../common/Text/custom_text';
+import { useSelector } from 'react-redux';
 
 const BalanceCard = () => {
+  const data = useSelector((state:any)=>state.transaction);
   return (
     <LinearGradient
       colors={[AppColors.gradient.start, AppColors.gradient.end]}
@@ -16,7 +18,7 @@ const BalanceCard = () => {
       <CustomText text="Total Balance" color={AppColors.white} />
       
       <CustomText
-        text="$ 48000.00"
+        text={`$${data.totalBalance}`}
         color={AppColors.white}
         style={styles.large}
       />
@@ -24,13 +26,13 @@ const BalanceCard = () => {
       <RowContainer>
         <ColumnText
           title="Income"
-          subTitle={20000}
+          subTitle={data.income}
           titleStyle={styles.textColor}
           subTitleStyle={styles.textColor}
         />
         <ColumnText
           title="Expense"
-          subTitle={200000000}
+          subTitle={data.totalExpense}
           titleStyle={styles.textColor}
           subTitleStyle={styles.textColor}
         />
