@@ -78,33 +78,7 @@ export const CardList = ({navigation}: any) => {
         }
       />
 
-      <Card
-        bColor="green"
-        icon="fastfood"
-        title="Food"
-        date={getMonthName(getMonth())}
-        onPress={() =>
-          navigation.navigate('CategoryScreen', {category: 'Food'})
-        }
-      />
-      <Card
-        bColor="green"
-        icon="fastfood"
-        title="Food"
-        date={getMonthName(getMonth())}
-        onPress={() =>
-          navigation.navigate('CategoryScreen', {category: 'Food'})
-        }
-      />
-      <Card
-        bColor="green"
-        icon="fastfood"
-        title="Food"
-        date={getMonthName(getMonth())}
-        onPress={() =>
-          navigation.navigate('CategoryScreen', {category: 'Food'})
-        }
-      />
+      
     </View>
   );
 };

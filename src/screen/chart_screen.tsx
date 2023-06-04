@@ -65,7 +65,7 @@ export const ChartScreen = ({navigation, route}: any) => {
                 ],
               }}
               height={320}
-              width={Dimensions.get('window').width}
+              width={800}
               chartConfig={{
                 backgroundGradientFrom: 'black',
                 backgroundGradientTo: 'grey',
