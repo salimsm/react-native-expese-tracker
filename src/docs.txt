@@ -16,3 +16,15 @@ branch :
 2) folder-structure
 3) add-page
 4) feature/splash
+
+
+
+Todo:
+create a model or page that ask for salary for the first time, store set_salary = false in storage and also set new_salary also same as current salary i.e.
+storage.set('current_salary',20000);
+storage.set('new_salary',20000);
+
+
+
+for salary :
+go to setting and add new salary but make a condition in add page that is if day is 1 first compare currnent monthly salary with the new one and if different then set current salary value that of new salray

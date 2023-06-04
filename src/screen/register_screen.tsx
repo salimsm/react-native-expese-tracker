@@ -19,12 +19,15 @@ import {AppColors} from '../const';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export const RegisterScreen = ({navigation}: any) => {
-  const [email, setEmail] = useState('bob2@gmail.com');
-  const [password, setPassword] = useState('123456');
+  // const [email, setEmail] = useState('bob2@gmail.com');
+  // const [password, setPassword] = useState('123456');
 
-  const handleRegister = async () => {
+  const doRegister = async (values:any) => {
+    console.log(values,'values');
+    
+    
     try {
-      const response = await registerFirebase(email, password);
+      const response = await registerFirebase(values.email, values.pwd);
       console.log(response, 'Response form reg screen');
       goBack(navigation);
       ToastAndroid.show(
@@ -40,7 +43,8 @@ export const RegisterScreen = ({navigation}: any) => {
     <Formik
       initialValues={{email: '', pwd: ''}}
       validate={registerValidate}
-      onSubmit={handleRegister}>
+      onSubmit={doRegister
+      }>
       {({handleChange, handleBlur, handleSubmit, errors, values}) => (
         <View style={styles.container}>
           <Text style={{textAlign: 'center', fontSize: 20, fontWeight: 'bold'}}>
@@ -67,7 +71,7 @@ export const RegisterScreen = ({navigation}: any) => {
           <CustomButton
             text="Register"
             style={{justifyContent: 'center'}}
-            onPress={handleRegister}
+            onPress={handleSubmit}
           />
           <TouchableOpacity
             style={styles.secondaryBtn}

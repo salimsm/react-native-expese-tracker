@@ -10,7 +10,7 @@ import {
 
 interface IColumnText {
   title: string;
-  subTitle: string | number;
+  subTitle: string | number|undefined;
   style?: StyleProp<ViewStyle>;
   titleStyle?: StyleProp<TextStyle>;
   subTitleStyle?: StyleProp<TextStyle>;

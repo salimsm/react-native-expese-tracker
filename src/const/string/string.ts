@@ -47,3 +47,10 @@ export const monthNameList = [
   'Nov',
   'Dec',
 ];
+
+
+export const StorageKey = {
+  USER_ID:'USER_ID',
+  USER_EMAIL:'USER_EMAIL'
+
+}
