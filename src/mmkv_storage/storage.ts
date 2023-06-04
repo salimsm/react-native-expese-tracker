@@ -9,3 +9,7 @@ export const getStorage=(key:string)=>{
 export  const setStorage=(key:string,value:string)=>{
     storage.set(key,value);
 }
+
+export const clearStorage =()=>{
+    storage.clearAll();
+}

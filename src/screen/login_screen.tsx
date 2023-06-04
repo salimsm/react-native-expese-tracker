@@ -18,11 +18,13 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { setStorage } from '../mmkv_storage/storage';
 import { RegisterScreen } from './register_screen';
 import { MainScreen } from './main_screen';
+import { useDispatch } from 'react-redux';
+import { addUserToStore } from '../redux/slice/userSlice';
 
 export const LoginScreen = ({navigation}: any) => {
   // const [email, setEmail] = useState('bob2@gmail.com');
   // const [password, setPassword] = useState('12345');
-
+  const dispatch = useDispatch();
   const doLogin = async (values: any) => {
     console.log(values, 'values');
 
@@ -31,7 +33,8 @@ export const LoginScreen = ({navigation}: any) => {
       console.log(response, 'response');
       setStorage(StorageKey.USER_ID ,response.user.uid);
       setStorage(StorageKey.USER_EMAIL,response.user.email);
-      navigation.navigate('MainScreen');
+      dispatch(addUserToStore(response.user.uid));
+      //navigation.navigate('MainScreen');
     } catch (e: any) {
       ToastAndroid.show(e, ToastAndroid.SHORT);
     }
