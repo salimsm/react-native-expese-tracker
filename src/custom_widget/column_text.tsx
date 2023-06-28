@@ -30,8 +30,8 @@ export const ColumnText = ({
   );
 };
 const styles = StyleSheet.create({
-  container: {alignItems: 'flex-start'},
+  container: {alignItems: 'flex-start',flex:1},
   title: {fontSize: 14},
-  subTitle: {fontSize: 20, fontWeight: 'bold'},
+  subTitle: {fontSize: 17, fontWeight: 'bold'},
 });
 

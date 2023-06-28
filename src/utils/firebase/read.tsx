@@ -1,9 +1,12 @@
 import firestore from '@react-native-firebase/firestore';
 import {addTranscation} from '../../redux/slice/transactionSlice';
+import { StorageKey } from '../../const';
+import { getStorage } from '../../mmkv_storage/storage';
 
 export const getData = (dispatch: any) => {
+  const uid = getStorage(StorageKey.USER_ID);
   firestore()
-    .collection('01userId')
+    .collection(uid!)
     .get()
     .then(collectionSnapshot => {
       const temp: {}[] = [];
