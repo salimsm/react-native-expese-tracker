@@ -12,6 +12,8 @@ import firestore from '@react-native-firebase/firestore';
 import {getDate} from '../utils/date';
 import { CustomInputText, CustomButton } from '../common';
 import { AppBar, CategorySelector } from '../custom_widget';
+import { getStorage } from '../mmkv_storage/storage';
+import { StorageKey } from '../const';
 
 export const AddScreen = ({navigation}: any) => {
   const [amount, setAmount] = useState<number>(0);
@@ -20,6 +22,7 @@ export const AddScreen = ({navigation}: any) => {
   const [date, setDate] = useState(getDate());
 
   console.log('AddScreen');
+  const userId= getStorage(StorageKey.USER_ID);
   const handleSave = () => {
     if (amount <= 0) {
       ToastAndroid.show('Amount cannot be 0 or less!', ToastAndroid.SHORT);
@@ -27,7 +30,7 @@ export const AddScreen = ({navigation}: any) => {
       ToastAndroid.show('Note cannot be empty!', ToastAndroid.SHORT);
     } else {
       firestore()
-        .collection('01userId')
+        .collection(userId?userId:'00001')
         .add({
           note: note,
           amount: amount,

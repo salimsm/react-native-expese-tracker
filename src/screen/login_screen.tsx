@@ -1,5 +1,4 @@
 import {
-  Button,
   StyleSheet,
   Text,
   TextInput,
@@ -14,19 +13,25 @@ import {Formik} from 'formik';
 import {loginValidate} from '../utils/login_validation';
 import ErrorText from '../custom_widget/error_text';
 import {textInputStyles} from '../styles';
-import {AppColors} from '../const';
+import {AppColors, StorageKey} from '../const';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { setStorage } from '../mmkv_storage/storage';
+import { RegisterScreen } from './register_screen';
+import { MainScreen } from './main_screen';
 
 export const LoginScreen = ({navigation}: any) => {
   // const [email, setEmail] = useState('bob2@gmail.com');
   // const [password, setPassword] = useState('12345');
 
-  const handleLogin = async (values: any) => {
+  const doLogin = async (values: any) => {
     console.log(values, 'values');
 
     try {
       const response = await loginFirebase(values.email, values.pwd);
       console.log(response, 'response');
+      setStorage(StorageKey.USER_ID ,response.user.uid);
+      setStorage(StorageKey.USER_EMAIL,response.user.email);
+      navigation.navigate('MainScreen');
     } catch (e: any) {
       ToastAndroid.show(e, ToastAndroid.SHORT);
     }
@@ -35,7 +40,7 @@ export const LoginScreen = ({navigation}: any) => {
     <Formik
       initialValues={{email: '', pwd: ''}}
       validate={loginValidate}
-      onSubmit={handleLogin}>
+      onSubmit={doLogin}>
       {({handleChange, handleBlur, handleSubmit, values, errors}) => (
         <View style={styles.container}>
           <Text style={{textAlign: 'center', fontSize: 20, fontWeight: 'bold'}}>
